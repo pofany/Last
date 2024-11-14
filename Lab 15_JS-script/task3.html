@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Завдання 3</title>
+    <link href="../css/style.css" rel="stylesheet">
+</head>
+<body>
+<label for="userInput">Введіть рядок:</label>
+<input type="text" id="userInput">
+<button onclick="processText()">Обробити</button>
+<div id="output"></div>
+<script>
+    function encrypt(text) {
+        let alphabet = "абвгґдеєжзийклмнопрстуфхцчшщьюя"; // Український алфавіт
+        let encryptedText = "";
+
+        for (let i = 0; i < text.length; i++) {
+            let char = text[i];
+            let index = alphabet.indexOf(char.toLowerCase());
+
+            if (index === -1) {
+                // Якщо символ не є літерою алфавіту, додаємо його без змін
+                encryptedText += char;
+            } else {
+                // Знаходимо наступну літеру в алфавіті
+                let newIndex = (index + 1) % alphabet.length;
+                let newChar = alphabet[newIndex];
+
+                // Зберігаємо регістр символу
+                if (char === char.toUpperCase()) {
+                    newChar = newChar.toUpperCase();
+                }
+
+                encryptedText += newChar;
+            }
+        }
+
+        return encryptedText;
+    }
+
+    function processText() {
+        let text = document.getElementById("userInput").value;
+        let encryptedText = encrypt(text);
+
+        let outputDiv = document.getElementById("output");
+        outputDiv.innerHTML = `
+                <p>Оригінальний текст: ${text}</p>
+                <p>Зашифрований текст: ${encryptedText}</p>
+            `;
+    }
+</script>
+<div class="center">
+    <ul class="list">
+        <li><button class="home"><a href="../index.html">Повернутися на головну сторінку</a></button></li>
+    </ul>
+</div>
+</body>
+</html>

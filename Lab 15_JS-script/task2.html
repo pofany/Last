@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Завдання 2</title>
+    <link href="../css/style.css" rel="stylesheet">
+</head>
+<body>
+<label for="userInput">Введіть рядок:</label>
+<input type="text" id="userInput">
+<button onclick="processText()">Обробити</button>
+<div id="output"></div>
+<script>
+    function processText() {
+        let text = document.getElementById("userInput").value;
+        let words = text.split(' '); // Розділяємо текст на слова
+        let secondLastWord = words[words.length - 2]; // Отримуємо передостаннє слово
+        let count = secondLastWord.length; // Рахуємо кількість літер у передостанньому слові
+
+        let swapLetters = function(word) {
+            if (word.length <= 1) return word;
+            return word[word.length - 1] + word.slice(1, -1) + word[0];
+        };
+
+        let swappedWords = words.map(swapLetters);
+        let newText = swappedWords.join(' ');
+
+        let outputDiv = document.getElementById("output");
+        outputDiv.innerHTML = `
+                <p>Введений рядок: ${text}</p>
+                <p>Кількість літер у передостанньому слові = ${count}</p>
+                <p>Оновлений рядок: ${newText}</p>
+            `;
+    }
+</script>
+<div class="center">
+    <ul class="list">
+        <li><button class="home"><a href="../index.html">Повернутися на головну сторінку</a></button></li>
+    </ul>
+</div>
+</body>
+</html>

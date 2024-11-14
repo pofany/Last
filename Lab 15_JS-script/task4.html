@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Завдання 4</title>
+    <link href="../css/style.css" rel="stylesheet">
+</head>
+<body>
+<label for="userInput">Введіть рядок:</label>
+<input type="text" id="userInput">
+<button onclick="processText()">Обробити</button>
+<div id="output"></div>
+<script>
+    function shuffleWord(word) {
+        if (word.length <= 2) {
+            return word;
+        }
+
+        let middleChars = word.slice(1, -1).split(''); // Виділяємо середні літери
+        for (let i = middleChars.length - 1; i > 0; i--) {
+            let j = Math.floor(Math.random() * (i + 1)); // Випадковий індекс
+            [middleChars[i], middleChars[j]] = [middleChars[j], middleChars[i]]; // Перемішуємо літери
+        }
+
+        return word[0] + middleChars.join('') + word[word.length - 1]; // Повертаємо слово зі зміненими середніми літерами
+    }
+
+    function encryptText(text) {
+        return text.split(' ').map(shuffleWord).join(' '); // Перемішуємо літери у кожному слові та об'єднуємо слова назад у рядок
+    }
+
+    function processText() {
+        let text = document.getElementById("userInput").value;
+        let encryptedText = encryptText(text);
+
+        let outputDiv = document.getElementById("output");
+        outputDiv.innerHTML = `
+                <p>Оригінальний текст: ${text}</p>
+                <p>Зашифрований текст: ${encryptedText}</p>
+            `;
+    }
+</script>
+<div class="center">
+    <ul class="list">
+        <li><button class="home"><a href="../index.html">Повернутися на головну сторінку</a></button></li>
+    </ul>
+</div>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Завдання 1</title>
+    <link href="../css/style.css" rel="stylesheet">
+</head>
+<body>
+<label for="userInput">Введіть рядок:</label>
+<input type="text" id="userInput">
+<button class ="home" onclick="processText()">Обробити</button>
+<div id="output"></div>
+<script>
+    function processText() {
+        let text = document.getElementById("userInput").value;
+        let newText = "";
+        for (let i = 0; i < text.length; i++) {
+            if (text[i] === ';' && text[i + 1] === '?') {
+                // Якщо ми знаходимо ";?", пропускаємо символ "?"
+                newText += text[i];
+                i++; // Пропускаємо символ "?" після ";"
+            } else {
+                newText += text[i];
+            }
+        }
+
+        let countO = 0;
+        for (let i = 0; i < newText.length; i++) {
+            if (newText[i] === 'о' || newText[i] === 'О') {
+                countO += 1;
+            }
+        }
+
+        let outputDiv = document.getElementById("output");
+        outputDiv.innerHTML = `
+            <p>Введений рядок: ${text}</p>
+            <p>Оновлений рядок: ${newText}</p>
+            <p>Кількість символів 'о' та 'О' в оновленому рядку: ${countO}</p>
+        `;
+    }
+</script>
+<div class="center">
+    <ul class="list">
+        <li><button class="home"><a href="../index.html">Повернутися на головну сторінку</a></button></li>
+    </ul>
+</div>
+</body>
+</html>

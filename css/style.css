@@ -1,0 +1,37 @@
+.center ul {
+  list-style-position: inside;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+.list {
+  list-style-type: none;
+  text-underline: none;
+}
+
+a {
+  text-decoration: none;
+  color: #000000;
+  font-size: larger;
+}
+
+
+button {
+  margin-bottom: 5px;
+  background-color: aliceblue;
+  border-radius: 2px;
+  box-shadow: #555555;
+  height: 50px ;
+  width: 200px;
+
+}
+
+body {
+  background-color: #86edf1;
+}
+
+h1, p {
+  text-align: center;
+  font-size: 40px;
+}
